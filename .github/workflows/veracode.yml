@@ -32,6 +32,6 @@ jobs:
         uses: veracode/veracode-uploadandscan-action@0.2.1
         with: 
           appname: Juice Shop
-          vid: ${{ secrets.VERACODE_ID. }}
+          vid: ${{ secrets.VERACODE_ID }}
           vkey: ${{ secrets.VERACODE_SECRET }}
           filepath: ./
