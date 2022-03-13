@@ -26,11 +26,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm install
+      - run: |
+          npm install
+          zip -r scan.zip .
       - name: Veracode Upload And Scan
         uses: veracode/veracode-uploadandscan-action@0.2.1
         with: 
           appname: Juice Shop
           vid: ${{ secrets.VERACODE_ID }}
           vkey: ${{ secrets.VERACODE_SECRET }}
-          filepath: ./
+          filepath: scan.zip
