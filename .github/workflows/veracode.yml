@@ -29,6 +29,10 @@ jobs:
       - run: |
           npm install
           zip -r scan.zip .
+      - uses: actions/upload-artifact@v3
+        with:
+          name: veracode_upload
+          path: scan.zip          
       - name: Veracode Upload And Scan
         uses: veracode/veracode-uploadandscan-action@0.2.1
         with: 
