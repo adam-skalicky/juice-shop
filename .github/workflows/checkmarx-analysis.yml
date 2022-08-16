@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: echo "build"
       - name: Checkmarx Action
-        uses: checkmarx-ts/checkmarx-github-action@latest
+        uses: checkmarx-ts/checkmarx-github-action@v1.0.6
         with:
           cxServer: https://ast.checkmarx.net/
           cxApiToken: ${{ secrets.CF_TOKEN }}
