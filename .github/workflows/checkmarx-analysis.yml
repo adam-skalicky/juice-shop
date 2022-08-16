@@ -30,7 +30,7 @@ jobs:
         uses: checkmarx-ts/checkmarx-github-action@v1.0.6
         with:
           cxServer: https://ast.checkmarx.net/
-          cxApiToken: ${{ secrets.CF_TOKEN }}
+          cxToken: ${{ secrets.CF_TOKEN }}
           cxTeam: devtst_poc
       - name: Complete
         run: echo "Complete"
