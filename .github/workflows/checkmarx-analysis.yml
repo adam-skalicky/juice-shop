@@ -27,17 +27,15 @@ jobs:
       - name: Build
         run: echo "build"
       - name: Checkmarx CxFlow Action
-        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.3
+        uses: Checkmarx/ast-github-actions
         with:
-          project: GithubActionTest
-          cx_tenant: devtst_poc
-          checkmarx_url: https://ast.checkmarx.net
-          cx_client_id: Github Actions
+          project: adam-skalicky/juice-shop
+          base_url: https://ast.checkmarx.net
           checkmarx_client_secret: ${{ secrets.CF_TOKEN }}
       # Upload SARIF report for CodeQL / Security Alerts PRocessing
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: cx.sarif
+      # - name: Upload SARIF file
+      #   uses: github/codeql-action/upload-sarif@v1
+      #   with:
+      #     sarif_file: cx.sarif
       - name: Complete
         run: echo "Complete"
