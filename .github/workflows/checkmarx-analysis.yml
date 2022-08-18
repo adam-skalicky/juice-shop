@@ -32,7 +32,7 @@ jobs:
           project: adam-skalicky/juice-shop
           # :devtst_poc
           cx_client_id: "Github Actions"
-          cx_clientcheckmarx_client_secret_secret: ${{ secrets.CF_TOKEN }}
+          cxToken: ${{ secrets.CF_TOKEN }}
           checkmarx_url: https://ast.checkmarx.net
           cx_tenant: devtst_poc
           scanners: sast, cxgo, sca
