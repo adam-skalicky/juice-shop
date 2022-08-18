@@ -31,10 +31,10 @@ jobs:
         with:
           project: adam-skalicky/juice-shop
           # :devtst_poc
-          cx_client_id: "Github Actions"
-          cxToken: ${{ secrets.CF_TOKEN }}
-          checkmarx_url: https://ast.checkmarx.net
-          cx_tenant: devtst_poc
+          cxUsername: adam@devtst.io
+          cxPassword: ${{ secrets.CHECKMARX_PASS }}
+          # cxServer: https://ast.checkmarx.net
+          # cx_tenant: devtst_poc
           scanners: sast, cxgo, sca
       # Upload SARIF report for CodeQL / Security Alerts PRocessing
       # - name: Upload SARIF file
