@@ -29,13 +29,8 @@ jobs:
       - name: Checkmarx CxFlow Action
         uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.5
         with:
-          project: adam-skalicky/juice-shop
-          # :devtst_poc
-          cxUsername: adam@devtst.io
-          cxPassword: ${{ secrets.CHECKMARX_PASS }}
-          # cxServer: https://ast.checkmarx.net
-          # cx_tenant: devtst_poc
-          scanners: sast, cxgo, sca
+          cxProject: adam-skalicky/juice-shop
+          cxToken: ${{ secrets.CXTOKEN }}
       # Upload SARIF report for CodeQL / Security Alerts PRocessing
       # - name: Upload SARIF file
       #   uses: github/codeql-action/upload-sarif@v1
