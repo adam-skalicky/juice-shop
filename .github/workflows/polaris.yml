@@ -2,6 +2,9 @@ name: polaris
 on: 
   push: 
     branches: [ master ] 
+
+  workflow_dispatch: 
+
 jobs: 
   polaris: 
     runs-on: ubuntu-latest 
