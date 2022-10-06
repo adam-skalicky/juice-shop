@@ -3,8 +3,6 @@ on:
   push: 
     branches: [ master ] 
 
-  workflow_dispatch: 
-
 jobs: 
   polaris: 
     runs-on: ubuntu-latest 
@@ -15,7 +13,7 @@ jobs:
           java-version: 8 
       - name: polaris 
         run: | 
-          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip unzip -d /tmp -jo polaris_cli-linux64.zip 
+          curl -fLOsS $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip | unzip -d /tmp -jo polaris_cli-linux64.zip 
           /tmp/polaris --co project.name=$PROJECT analyze -w -- $BLDCMD 
         env: 
           POLARIS_SERVER_URL: ${{ secrets.POLARIS_SERVER_URL }} 
