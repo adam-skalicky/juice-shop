@@ -32,3 +32,4 @@ jobs:
         env: 
           SYN_TOKEN: ${{ secrets.SYN_TOKEN }} 
           SYN_URL: ${{ secrets.SYN_URL }}           
+          
