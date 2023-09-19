@@ -4,10 +4,8 @@
  */
 
 import frisby = require('frisby')
-import { expect } from '@jest/globals'
 import config from 'config'
 import path from 'path'
-
 const fs = require('fs')
 
 const jsonHeader = { 'content-type': 'application/json' }

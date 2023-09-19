@@ -14,9 +14,6 @@ import { CookieService } from 'ngx-cookie'
 import { ConfigurationService } from '../Services/configuration.service'
 import { LoginGuard } from '../app.guard'
 import { roles } from '../roles'
-import { Observable } from 'rxjs'
-import { FeatureFlagService } from '../Services/feature-flag.service'
-import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'sidenav',
@@ -34,13 +31,11 @@ export class SidenavComponent implements OnInit {
   public isShowing = false
   public offerScoreBoardTutorial: boolean = false
 
-  public scoreBoardLink$: Observable<string>
-
   @Output() public sidenavToggle = new EventEmitter()
 
   constructor (private readonly administrationService: AdministrationService, private readonly challengeService: ChallengeService,
     private readonly ngZone: NgZone, private readonly io: SocketIoService, private readonly userService: UserService, private readonly cookieService: CookieService,
-    private readonly router: Router, private readonly configurationService: ConfigurationService, private readonly loginGuard: LoginGuard, private readonly featureFlagService: FeatureFlagService) { }
+    private readonly router: Router, private readonly configurationService: ConfigurationService, private readonly loginGuard: LoginGuard) { }
 
   ngOnInit () {
     this.administrationService.getApplicationVersion().subscribe((version: any) => {
@@ -72,7 +67,6 @@ export class SidenavComponent implements OnInit {
         }
       })
     })
-    this.scoreBoardLink$ = this.featureFlagService.defaultScoreBoard$.pipe(map((version) => version === 'v1' ? '/score-board' : '/score-board-preview'))
   }
 
   isLoggedIn () {

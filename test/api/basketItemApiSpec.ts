@@ -4,7 +4,6 @@
  */
 
 import frisby = require('frisby')
-import { expect } from '@jest/globals'
 import config from 'config'
 
 const API_URL = 'http://localhost:3000/api'

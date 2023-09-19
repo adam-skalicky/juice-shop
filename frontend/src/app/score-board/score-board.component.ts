@@ -12,7 +12,7 @@ import { SocketIoService } from '../Services/socket-io.service'
 import { NgxSpinnerService } from 'ngx-spinner'
 import { ActivatedRoute } from '@angular/router'
 
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { dom, library } from '@fortawesome/fontawesome-svg-core'
 import { faStar, faTrophy, faPollH } from '@fortawesome/free-solid-svg-icons'
 import { faGem } from '@fortawesome/free-regular-svg-icons'
 import { faBtc, faGithub, faGitter } from '@fortawesome/free-brands-svg-icons'
@@ -24,6 +24,7 @@ import { CodeSnippetComponent } from '../code-snippet/code-snippet.component'
 import { CodeSnippetService } from '../Services/code-snippet.service'
 
 library.add(faStar, faGem, faGitter, faGithub, faBtc, faTrophy, faPollH)
+dom.watch()
 
 @Component({
   selector: 'app-score-board',
@@ -131,7 +132,7 @@ export class ScoreBoardComponent implements OnInit, AfterViewInit {
                 challenges[i].hasTutorial = module.hasInstructions(challenges[i].name)
               })
             }
-            challenges[i].hasSnippet = challengesWithCodeSnippet.includes(challenges[i].key)
+            challenges[i].hasSnippet = challengesWithCodeSnippet.indexOf(challenges[i].key) > -1
           }
           this.availableChallengeCategories.sort((a, b) => a.localeCompare(b))
           this.displayedChallengeCategories = localStorage.getItem('displayedChallengeCategories') ? JSON.parse(String(localStorage.getItem('displayedChallengeCategories'))) : this.availableChallengeCategories

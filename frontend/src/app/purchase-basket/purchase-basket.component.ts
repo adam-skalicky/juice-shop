@@ -6,13 +6,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { BasketService } from '../Services/basket.service'
 import { UserService } from '../Services/user.service'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { dom, library } from '@fortawesome/fontawesome-svg-core'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons/'
 import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 import { DeluxeGuard } from '../app.guard'
 import { SnackBarHelperService } from '../Services/snack-bar-helper.service'
 
 library.add(faTrashAlt, faMinusSquare, faPlusSquare)
+dom.watch()
 
 @Component({
   selector: 'app-purchase-basket',

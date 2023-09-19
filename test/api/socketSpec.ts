@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import io from 'socket.io-client'
+import io = require('socket.io-client')
 
 describe('WebSocket', () => {
   let socket: SocketIOClient.Socket

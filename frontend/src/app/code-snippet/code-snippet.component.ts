@@ -21,13 +21,13 @@ enum ResultState {
   Wrong,
 }
 
-export interface Solved {
+interface Solved {
   findIt: boolean
   fixIt: boolean
 }
 
 @Component({
-  selector: 'code-snippet',
+  selector: 'app-user-details',
   templateUrl: './code-snippet.component.html',
   styleUrls: ['./code-snippet.component.scss']
   })

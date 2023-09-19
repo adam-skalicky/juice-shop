@@ -57,19 +57,6 @@ export const sendNotification = function (challenge: { difficulty?: number, key:
   }
 }
 
-export const sendCodingChallengeNotification = function (challenge: { key: string, codingChallengeStatus: 0|1|2 }) {
-  if (challenge.codingChallengeStatus > 0) {
-    const notification = {
-      key: challenge.key,
-      codingChallengeStatus: challenge.codingChallengeStatus
-    }
-    if (global.io) {
-      // @ts-expect-error
-      global.io.emit('code challenge solved', notification)
-    }
-  }
-}
-
 export const notSolved = (challenge: any) => challenge && !challenge.solved
 
 export const findChallengeByName = (challengeName: string) => {
@@ -102,7 +89,6 @@ export const solveFindIt = async function (key: string, isRestore: boolean) {
     accuracy.storeFindItVerdict(solvedChallenge.key, true)
     accuracy.calculateFindItAccuracy(solvedChallenge.key)
     await calculateFindItCheatScore(solvedChallenge)
-    sendCodingChallengeNotification({ key, codingChallengeStatus: 1 })
   }
 }
 
@@ -114,6 +100,5 @@ export const solveFixIt = async function (key: string, isRestore: boolean) {
     accuracy.storeFixItVerdict(solvedChallenge.key, true)
     accuracy.calculateFixItAccuracy(solvedChallenge.key)
     await calculateFixItCheatScore(solvedChallenge)
-    sendCodingChallengeNotification({ key, codingChallengeStatus: 2 })
   }
 }

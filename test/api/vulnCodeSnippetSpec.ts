@@ -3,9 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { expect } from '@jest/globals'
 import frisby = require('frisby')
-import io from 'socket.io-client'
 const Joi = frisby.Joi
 
 const URL = 'http://localhost:3000'
@@ -34,23 +32,20 @@ describe('/snippets/:challenge', () => {
 })
 
 describe('snippets/verdict', () => {
-  let socket: SocketIOClient.Socket
-
-  beforeEach(done => {
-    socket = io('http://localhost:3000', {
-      reconnectionDelay: 0,
-      forceNew: true
+  it('should check for the correct lines', () => {
+    return frisby.post(URL + '/snippets/verdict', {
+      body: {
+        selectedLines: [2],
+        key: 'resetPasswordJimChallenge'
+      }
     })
-    socket.on('connect', () => {
-      done()
-    })
-  })
-
-  afterEach(done => {
-    if (socket.connected) {
-      socket.disconnect()
-    }
-    done()
+      .expect('status', 200)
+      .expect('jsonTypes', {
+        verdict: Joi.boolean()
+      })
+      .expect('json', {
+        verdict: true
+      })
   })
 
   it('should check for the incorrect lines', () => {
@@ -67,34 +62,5 @@ describe('snippets/verdict', () => {
       .expect('json', {
         verdict: false
       })
-  })
-
-  it('should check for the correct lines', async () => {
-    const websocketReceivedPromise = new Promise<void>((resolve) => {
-      socket.once('code challenge solved', (data: any) => {
-        expect(data).toEqual({
-          key: 'resetPasswordJimChallenge',
-          codingChallengeStatus: 1
-        })
-        resolve()
-      })
-    })
-
-    await frisby.post(URL + '/snippets/verdict', {
-      body: {
-        selectedLines: [2],
-        key: 'resetPasswordJimChallenge'
-      }
-    })
-      .expect('status', 200)
-      .expect('jsonTypes', {
-        verdict: Joi.boolean()
-      })
-      .expect('json', {
-        verdict: true
-      })
-      .promise()
-
-    await websocketReceivedPromise
   })
 })

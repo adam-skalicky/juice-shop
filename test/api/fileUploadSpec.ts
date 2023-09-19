@@ -4,7 +4,6 @@
  */
 
 import frisby = require('frisby')
-import { expect } from '@jest/globals'
 import path from 'path'
 const fs = require('fs')
 const utils = require('../../lib/utils')
